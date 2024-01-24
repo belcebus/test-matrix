@@ -21,7 +21,9 @@ jobs:
       - name: prepare
         id: prepare
         run: |
-          echo "{matrix}={ [{\"work\":\"foo\"},{\"work\":\"bar\"}] }" >> $GITHUB_OUTPUT      
+          echo "{matrix}={ [{\"work\":\"foo\"},{\"work\":\"bar\"}] }" >> $GITHUB_OUTPUT   
+      - name: echo matrix
+        run: echo ${{steps.outputs.prepare.matrix}}
     
 
   build:
