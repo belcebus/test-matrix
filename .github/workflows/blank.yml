@@ -32,11 +32,7 @@ jobs:
     needs: prepare-matrix
     
     strategy:
-      #matrix: ${{ fromJson(needs.prepare-matrix.outputs.matrix) }}
-      matrix:
-        include:
-          - work: foo
-          - work: bars
+      matrix: ${{ fromJson(needs.prepare-matrix.outputs.matrix) }}
       max-parallel: 2
     steps:
 
