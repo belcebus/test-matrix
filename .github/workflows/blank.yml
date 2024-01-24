@@ -21,7 +21,7 @@ jobs:
       - name: prepare
         id: prepare
         run: |
-          echo "MATRIX"="{[{\"project\":\"foo\"},{\"project\":\"bar\"}]}" >> "$GITHUB_OUTPUT"   
+          echo "MATRIX"="{\"work\":\"foo\"}" >> "$GITHUB_OUTPUT"   
       - name: echo matrix
         run: echo ${{steps.prepare.outputs.MATRIX}}
       - name: fromJson
