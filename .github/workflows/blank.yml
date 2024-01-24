@@ -24,7 +24,8 @@ jobs:
           echo "MATRIX"="{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}" >> "$GITHUB_OUTPUT"   
       - name: echo matrix
         run: echo ${{steps.prepare.outputs.MATRIX}}
-    
+      - name: fromJson
+        run: ${{fromJson(steps.prepare.outputs.MATRIX}}
 
   build:
     runs-on: ubuntu-latest
