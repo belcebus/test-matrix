@@ -23,7 +23,7 @@ jobs:
         run: |
           echo "MATRIX"="HOLA" >> "$GITHUB_OUTPUT"   
       - name: echo matrix
-        run: echo ${{steps.outputs.prepare.MATRIX}}
+        run: echo ${{steps.prepare.outputs.MATRIX}}
     
 
   build:
