@@ -25,7 +25,7 @@ jobs:
       - name: echo matrix
         run: echo ${{steps.prepare.outputs.MATRIX}}
       - name: fromJson
-        run: echo "${{ fromJson(steps.prepare.outputs.MATRIX }}"
+        run: echo "${{ fromJson(steps.prepare.outputs.MATRIX) }}"
 
   build:
     runs-on: ubuntu-latest
