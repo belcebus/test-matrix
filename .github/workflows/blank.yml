@@ -40,5 +40,7 @@ jobs:
     steps:
 
       - name: Run a one-line script
-        run: echo Hello, ${{matrix.work}}
+        run: |
+          echo Hello, ${{matrix.work}}
+          echo "${{needs.prepare-matrix.matrix}}"
 
