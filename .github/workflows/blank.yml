@@ -16,14 +16,14 @@ jobs:
   prepare-matrix:
     runs-on: ubuntu-latest
     outputs:
-      matrix: steps.prepare.outputs.matrix
+      matrix: steps.prepare.outputs.MATRIX
     steps:
       - name: prepare
         id: prepare
         run: |
           echo "MATRIX=[{\"work\":\"foo\"},{\"work\":\"bar\"}]" >> "$GITHUB_OUTPUT"   
       - name: echo matrix
-        run: echo ${{steps.outputs.prepare.matrix}}
+        run: echo ${{steps.outputs.prepare.MATRIX}}
     
 
   build:
