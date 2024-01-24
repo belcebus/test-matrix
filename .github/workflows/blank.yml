@@ -16,7 +16,7 @@ jobs:
   prepare-matrix:
     runs-on: ubuntu-latest
     outputs:
-      matrix: steps.prepare.outputs.MATRIX
+      matrix: ${{steps.prepare.outputs.MATRIX}}
     steps:
       - name: prepare
         id: prepare
