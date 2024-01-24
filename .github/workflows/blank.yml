@@ -30,6 +30,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: prepare-matrix
+    
     strategy:
       #matrix: ${{ fromJson(needs.prepare-matrix.outputs.matrix) }}
       matrix:
@@ -42,5 +43,5 @@ jobs:
       - name: Run a one-line script
         run: |
           echo Hello, ${{matrix.work}}
-          echo "${{needs.prepare-matrix.matrix}}"
+          echo "${{needs.prepare-matrix.outputs.matrix}}"
 
