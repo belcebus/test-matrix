@@ -1,6 +1,4 @@
-# This is a basic workflow to help you get started with Actions
-
-name: CI
+name: Matrix limit test
 
 # Controls when the workflow will run
 on:
@@ -15,16 +13,23 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  prepare-matrix:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        works: [1,2,3,4,5,6,7]
-      max-parallel: 2
+    outputs:
+      works: steps.prepare.outputs.matrix
+    steps:
+      - name: prepare
+        id: prepare
+        run: |
+          echo "::set-output name=matrix::{\"include\":[{\"work\":\"foo\"},{\"work\":\"bar\"}]}"        
+    
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+  build:
+    runs-on: ubuntu-latest
+    needs: prepare-matrix
+    strategy:
+      matrix: ${{fromJson(needs.prepare-matrix.outputs.works)}}
+      max-parallel: 2
     steps:
 
       - name: Run a one-line script
