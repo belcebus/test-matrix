@@ -21,7 +21,16 @@ jobs:
       - name: prepare
         id: prepare
         run: |
-          echo "MATRIX"="{\"include\": [{\"work\": \"foo\"},{\"work\": \"bar\"}]}" >> "$GITHUB_OUTPUT"   
+          json_object="{ \"include\": ["
+          for ((i=1; i<=257; i++))
+          do
+              json_object+=" { \"work\": \"bar$1\" }"
+              if [ $i -lt 256 ]; then
+                  json_object+=","
+              fi
+          done
+          json_object+=" ] }"
+          echo "MATRIX"=$json_object >> "$GITHUB_OUTPUT"   
       - name: echo matrix
         run: echo ${{steps.prepare.outputs.MATRIX}}
       - name: fromJson
