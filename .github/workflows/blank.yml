@@ -24,8 +24,8 @@ jobs:
               json_object="{ \"include\": ["
               for ((i=1; i<=257; i++))
               do
-                  json_object+=" { \"work\": \"bar$1\" }"
-                  if [ $i -lt 256 ]; then
+                  json_object+=" { \"work\": \"bar$i\" }"
+                  if [ $i -lt 257 ]; then
                       json_object+=","
                   fi
               done
