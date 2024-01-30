@@ -44,7 +44,7 @@ jobs:
         run: echo "${{ fromJson(steps.prepare.outputs.MATRIX) }}"
       - name: prepare parallel execution max number
         id: max_parallel
-        run: echo "max"="{}" >> "GITHUB_OUTPUT"
+        run: echo "max"="{\"max\":\"3\"}" >> "GITHUB_OUTPUT"
       
 
   build:
