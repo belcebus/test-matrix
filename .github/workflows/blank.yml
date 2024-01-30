@@ -10,6 +10,12 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      max_parallel:
+        type: number
+        required: false
+        default: "3"
+        description: "maximum number of paralell executions"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -42,7 +48,7 @@ jobs:
     
     strategy:
       matrix: ${{ fromJson(needs.prepare-matrix.outputs.matrix) }}
-      max-parallel: 2
+      max-parallel: ${{inputs.max_parallel}}
     steps:
 
       - name: Run a one-line script
