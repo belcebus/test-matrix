@@ -1,0 +1,11 @@
+name: call reusable workflow
+on:
+  workflow_dispatch:
+
+jobs:
+  call:
+    name: call reusable workflow
+    uses: belcebus/test-matrix/.github/workflows/called.yml@main
+    with:
+      max: 3
+        
