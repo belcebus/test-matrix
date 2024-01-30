@@ -39,6 +39,7 @@ jobs:
     needs: prepare-matrix
     strategy:
       matrix: ${{ fromJson(needs.prepare-matrix.outputs.matrix) }}
+      max-parallel: ${{ inputs.max }}
     steps:
 
       - name: Run a one-line script
