@@ -23,7 +23,7 @@ jobs:
               for ((i=1; i<=256; i++))
               do
                   json_object+=" { \"work\": \"bar$i\" }"
-                  if [ $i -lt 257 ]; then
+                  if [ $i -lt 20 ]; then
                       json_object+=","
                   fi
               done
