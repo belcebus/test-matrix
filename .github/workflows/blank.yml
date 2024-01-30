@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       max_parallel:
-        type: number
+        type: string
         required: false
         default: "3"
         description: "maximum number of paralell executions"
@@ -41,14 +41,20 @@ jobs:
         run: echo ${{steps.prepare.outputs.MATRIX}}
       - name: fromJson
         run: echo "${{ fromJson(steps.prepare.outputs.MATRIX) }}"
+      - name: prepare parallel execution max number
+        id: max_parallel
+        run: json_object="{}"
+      
 
   build:
     runs-on: ubuntu-latest
     needs: prepare-matrix
+    env: 
+      MAX: ${{inputs.max_parallel}}
     
     strategy:
       matrix: ${{ fromJson(needs.prepare-matrix.outputs.matrix) }}
-      max-parallel: ${{inputs.max_parallel}}
+      max-parallel: ${{ fromJson(env.MAX) }}
     steps:
 
       - name: Run a one-line script
