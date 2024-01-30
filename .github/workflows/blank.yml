@@ -17,7 +17,7 @@ on:
         default: "3"
         description: "maximum number of parallel executions"
 env:
-  max: ${{inputs.max}}
+  max: 3
   
 jobs:
   prepare-matrix:
@@ -52,7 +52,7 @@ jobs:
     needs: prepare-matrix
     strategy:
       matrix: ${{ fromJson(needs.prepare-matrix.outputs.matrix) }}
-      max-parallel: ${{ fromJson(env.max) }}
+      max-parallel: ${{ fromJSON(env.max) }}
     steps:
 
       - name: Run a one-line script
